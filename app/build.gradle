@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion build_version.compileSdkVersion
+    buildToolsVersion build_version.buildToolsVersion
+    defaultConfig {
+        applicationId "com.github.rxcamera.rxcamera"
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode build_version.versionCode
+        versionName build_version.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation libs.kotlin_stdlib
+    implementation libs.support_v7
+    implementation libs.constraint
+    testImplementation libs.junit
+    androidTestImplementation libs.espresso_test_runner
+    androidTestImplementation libs.espresso_core
+}
